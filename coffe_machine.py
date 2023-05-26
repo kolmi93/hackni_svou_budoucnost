@@ -9,14 +9,6 @@ coffee = resources["coffee"]
 avability = True
 
 if choice == "espresso" or choice == "cappuccino" or choice == "latte":
-    for key in resources:
-        resources[key] -= MENU[choice]["ingredients"][key]
-        if avability == True:
-            print(f"Stav zásob: voda - {water}, mléko - {milk}, káva - {coffee}.")
-            break
-    else:
-            print(f"Na přípravu {choice} není dostatek surovin.")
-            exit()
     price = int(MENU[choice]["cost"])
     print(f"Cena {choice} je {price},- Kč.\n")
     print("Nyní je třeba zaplatit.\n")
@@ -63,14 +55,6 @@ else:
         if again == "ano":
             new_choice = input("Co byste si dal/a? Espresso, latte nebo cappuccino?\n").lower()
             if new_choice == "espresso" or new_choice == "cappuccino" or new_choice == "latte":
-                for key in resources:
-                    resources[key] -= MENU[new_choice]["ingredients"][key]
-            if avability == True:
-                print(f"Stav zásob: voda - {water}, mléko - {milk}, káva - {coffee}.")
-                break
-            else:
-                print(f"Na přípravu {new_choice} není dostatek surovin.")
-                exit()
                 new_price = int(MENU[new_choice]["cost"])
                 is_valid = True
                 print(f"Cena {new_choice} je {new_price},- Kč.\n")
