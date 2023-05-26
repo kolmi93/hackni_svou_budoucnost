@@ -6,9 +6,16 @@ choice = input("Co byste si dal/a? Espresso, latte nebo cappuccino?\n").lower()
 water = resources["water"]
 milk = resources["milk"]
 coffee = resources["coffee"]
-avability = True
 
 if choice == "espresso" or choice == "cappuccino" or choice == "latte":
+    resources["water"] -= MENU[choice]["ingredients"]["water"]
+    resources["milk"] -= MENU[choice]["ingredients"]["milk"]
+    resources["coffee"] -= MENU[choice]["ingredients"]["coffee"]
+    if resources["water"] > 0 or resources["milk"] > 0  or resources["milk"] > 0:
+        print(f"Zbývá {water} ml vody, {milk} ml mléka a {coffee} g kávy.\n")
+    else:
+        print("Vámi požadovaný nápoj nelze připravit z důvodu nedostatku ingrediencí.\n")
+        exit()
     price = int(MENU[choice]["cost"])
     print(f"Cena {choice} je {price},- Kč.\n")
     print("Nyní je třeba zaplatit.\n")
@@ -55,6 +62,14 @@ else:
         if again == "ano":
             new_choice = input("Co byste si dal/a? Espresso, latte nebo cappuccino?\n").lower()
             if new_choice == "espresso" or new_choice == "cappuccino" or new_choice == "latte":
+                resources["water"] -= MENU[new_choice]["ingredients"]["water"]
+                resources["milk"] -= MENU[new_choice]["ingredients"]["milk"]
+                resources["coffee"] -= MENU[new_choice]["ingredients"]["coffee"]
+                if resources["water"] > 0 or resources["milk"] > 0  or resources["milk"] > 0:
+                    print(f"Zbývá {water} ml vody, {milk} ml mléka a {coffee} g kávy.\n")
+                else:
+                    print("Vámi požadovaný nápoj nelze připravit z důvodu nedostatku ingrediencí.\n")
+                    exit()
                 new_price = int(MENU[new_choice]["cost"])
                 is_valid = True
                 print(f"Cena {new_choice} je {new_price},- Kč.\n")
